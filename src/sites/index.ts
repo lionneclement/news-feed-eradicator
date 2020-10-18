@@ -1,9 +1,14 @@
-export type SiteId = 'facebook' | 'twitter' | 'reddit' | 'hackernews';
+export type SiteId =
+	| 'facebook'
+	| 'twitter'
+	| 'reddit'
+	| 'hackernews'
+	| 'youtube';
 export const Sites: Record<SiteId, Site> = {
 	facebook: {
 		label: 'Facebook',
 		domain: 'facebook.com',
-		paths: ['/', '/'],
+		paths: ['/'],
 		origins: [
 			'http://www.facebook.com/*',
 			'https://www.facebook.com/*',
@@ -21,16 +26,22 @@ export const Sites: Record<SiteId, Site> = {
 		label: 'Reddit',
 		domain: 'reddit.com',
 		paths: ['/', '/r/all/', '/r/popular/']
-			.map((i) => [i + '', i + 'home/', i + 'hot/', i + 'new/', i + 'top/', i + 'rising/'])
+		.map((i) => [i + '', i + 'home/', i + 'hot/', i + 'new/', i + 'top/', i + 'rising/'])
 			.reduce((i, j) => i.concat(j)),
-		origins: ["https://www.reddit.com/*", "http://www.reddit.com/*",
+			origins: ["https://www.reddit.com/*", "http://www.reddit.com/*",
 			"https://old.reddit.com/*", "http://old.reddit.com/*"],
-  },
+	},
 	hackernews: {
 		label: 'Y Combinator News (HN)',
 		domain: 'news.ycombinator.com',
 		paths: ['/'],
 		origins: ['https://news.ycombinator.com/*'],
+	},
+	youtube: {
+		label: 'Youtube',
+		domain: 'youtube.com',
+		paths: ['/'],
+		origins: ['https://www.youtube.com/*', 'http://www.youtube.com/*'],
 	},
 };
 
